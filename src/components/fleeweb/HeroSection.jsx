@@ -89,7 +89,8 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
         >
           A team of elite full-stack developers crafting high-performance websites,
-          web applications, and digital platforms for businesses across the United States.
+          web applications, and digital platforms for businesses across the United States —
+          delivered in days, not weeks.
         </motion.p>
 
         <motion.div
@@ -122,9 +123,9 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 0.7 }}
         >
           {[
-            { value: '150+', label: 'Projects' },
+            { value: '3–5', label: 'Days Delivery' },
             { value: '99.9%', label: 'Uptime' },
-            { value: '50+', label: 'Clients' },
+            { value: '150+', label: 'Projects' },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-2xl md:text-3xl font-bold" style={{ color: '#0A0908' }}>{stat.value}</div>
