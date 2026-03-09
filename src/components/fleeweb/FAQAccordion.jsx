@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     q: 'How long does it take to build a website?',
-    a: 'Most standard websites are delivered in 2–4 weeks. Complex web applications with custom features, integrations, and backends typically take 6–10 weeks. We work in agile sprints and provide regular progress updates throughout.'
+    a: 'Most standard websites are delivered in just a few days — often within 3–5 business days. Complex web applications with custom features, integrations, and backends typically take 1–2 weeks. We work in agile sprints and provide regular progress updates throughout, so you\'re never left in the dark.'
   },
   {
     q: 'Do you provide hosting services?',
