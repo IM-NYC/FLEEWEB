@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 const faqs = [
   {
@@ -30,7 +29,7 @@ const faqs = [
   },
   {
     q: 'Can you redesign or improve my existing website?',
-    a: 'Definitely. We specialize in website redesigns and performance overhauls. We\'ll audit your current site, identify bottlenecks and UX issues, and deliver a modern, high-performing upgrade while preserving your SEO rankings.'
+    a: "Definitely. We specialize in website redesigns and performance overhauls. We'll audit your current site, identify bottlenecks and UX issues, and deliver a modern, high-performing upgrade while preserving your SEO rankings."
   },
   {
     q: 'What technologies do you work with?',
@@ -41,26 +40,30 @@ const faqs = [
     a: 'Yes. Every website we build includes on-page SEO optimization — semantic HTML, meta tags, schema markup, performance tuning, and mobile optimization. We also offer dedicated SEO strategy packages for ongoing growth.'
   },
   {
-    q: 'What if I\'m not satisfied with the design?',
+    q: "What if I'm not satisfied with the design?",
     a: 'Your satisfaction is guaranteed. We include up to 3 rounds of design revisions in every project. We collaborate closely with you throughout the process, sharing mockups and prototypes before writing a single line of production code.'
   },
 ];
 
 function FAQItem({ faq, isOpen, onToggle }) {
   return (
-    <div className={cn(
-      "border border-white/[0.06] rounded-xl overflow-hidden transition-all duration-300",
-      isOpen ? "bg-white/[0.04] border-white/[0.1]" : "bg-white/[0.02] hover:bg-white/[0.03]"
-    )}>
+    <div
+      className="rounded-xl overflow-hidden transition-all duration-300"
+      style={{
+        background: isOpen ? '#fff' : 'rgba(255,255,255,0.6)',
+        border: `1.5px solid ${isOpen ? '#C6AC8F' : 'rgba(198,172,143,0.4)'}`,
+        boxShadow: isOpen ? '0 4px 20px rgba(10,9,8,0.08)' : 'none'
+      }}
+    >
       <button
         onClick={onToggle}
         className="w-full flex items-center justify-between px-6 py-5 text-left"
       >
-        <span className="text-white font-medium text-sm md:text-base pr-4">{faq.q}</span>
-        <ChevronDown className={cn(
-          "w-5 h-5 text-slate-500 flex-shrink-0 transition-transform duration-300",
-          isOpen && "rotate-180 text-indigo-400"
-        )} />
+        <span className="font-semibold text-sm md:text-base pr-4" style={{ color: '#0A0908' }}>{faq.q}</span>
+        <ChevronDown
+          className="w-5 h-5 flex-shrink-0 transition-transform duration-300"
+          style={{ color: isOpen ? '#5E503F' : '#C6AC8F', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+        />
       </button>
       <AnimatePresence>
         {isOpen && (
@@ -70,7 +73,7 @@ function FAQItem({ faq, isOpen, onToggle }) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <div className="px-6 pb-5 text-slate-400 text-sm leading-relaxed">
+            <div className="px-6 pb-5 text-sm leading-relaxed" style={{ color: '#22333B' }}>
               {faq.a}
             </div>
           </motion.div>

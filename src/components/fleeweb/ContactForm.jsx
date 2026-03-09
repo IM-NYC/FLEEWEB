@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -7,33 +7,47 @@ import { base44 } from '@/api/base44Client';
 import { Send, Loader2, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-function generateCaptcha() {
-  const a = Math.floor(Math.random() * 10) + 1;
-  const b = Math.floor(Math.random() * 10) + 1;
-  return { question: `${a} + ${b}`, answer: a + b };
+const RECAPTCHA_SITE_KEY = '6LcwSoQsAAAAADuOY2u-f8au27l95OHHXdpQ6_EP';
+
+function useRecaptcha() {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    if (window.grecaptcha) { setLoaded(true); return; }
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js`;
+    script.async = true;
+    script.defer = true;
+    script.onload = () => setLoaded(true);
+    document.head.appendChild(script);
+    return () => {
+      try { document.head.removeChild(script); } catch {}
+    };
+  }, []);
+
+  return loaded;
 }
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [captcha, setCaptcha] = useState(generateCaptcha());
-  const [captchaInput, setCaptchaInput] = useState('');
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
+  const recaptchaRef = useRef(null);
+  const recaptchaLoaded = useRecaptcha();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
-    if (parseInt(captchaInput) !== captcha.answer) {
-      setError('Incorrect verification answer. Please try again.');
-      setCaptcha(generateCaptcha());
-      setCaptchaInput('');
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      setError('Please fill in all fields.');
       return;
     }
 
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
-      setError('Please fill in all fields.');
+    const token = window.grecaptcha?.getResponse(recaptchaRef.current);
+    if (!token) {
+      setError('Please complete the reCAPTCHA verification.');
       return;
     }
 
@@ -46,8 +60,23 @@ export default function ContactForm() {
     setSending(false);
     setSent(true);
     setForm({ name: '', email: '', message: '' });
-    setCaptchaInput('');
-    setCaptcha(generateCaptcha());
+    if (window.grecaptcha) window.grecaptcha.reset(recaptchaRef.current);
+  };
+
+  useEffect(() => {
+    if (recaptchaLoaded && window.grecaptcha && !recaptchaRef.current) {
+      recaptchaRef.current = window.grecaptcha.render('recaptcha-container', {
+        sitekey: RECAPTCHA_SITE_KEY,
+        theme: 'light',
+      });
+    }
+  }, [recaptchaLoaded]);
+
+  const inputClass = "h-12 rounded-xl text-sm border focus:ring-2 focus:ring-offset-0 transition-all duration-200";
+  const inputStyle = {
+    background: '#FAF8F5',
+    borderColor: '#C6AC8F',
+    color: '#0A0908',
   };
 
   if (sent) {
@@ -57,18 +86,19 @@ export default function ContactForm() {
         animate={{ opacity: 1, scale: 1 }}
         className="text-center py-16"
       >
-        <div className="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-5">
-          <CheckCircle className="w-8 h-8 text-emerald-400" />
+        <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5"
+          style={{ background: 'rgba(94,80,63,0.12)' }}>
+          <CheckCircle className="w-8 h-8" style={{ color: '#5E503F' }} />
         </div>
-        <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
-        <p className="text-slate-400">We'll get back to you within 24 hours.</p>
-        <Button
+        <h3 className="text-2xl font-bold mb-2" style={{ color: '#0A0908' }}>Message Sent!</h3>
+        <p style={{ color: '#22333B' }}>We'll get back to you within 24 hours.</p>
+        <button
           onClick={() => setSent(false)}
-          variant="outline"
-          className="mt-6 border-slate-700 text-slate-300 hover:bg-white/5"
+          className="mt-6 px-6 py-2.5 rounded-xl text-sm font-medium border transition-all duration-200 hover:shadow-md"
+          style={{ border: '1.5px solid #C6AC8F', color: '#5E503F', background: 'transparent' }}
         >
           Send Another Message
-        </Button>
+        </button>
       </motion.div>
     );
   }
@@ -76,52 +106,49 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <Label htmlFor="name" className="text-slate-300 text-sm mb-2 block">Full Name</Label>
+        <Label htmlFor="name" className="text-sm mb-2 block font-medium" style={{ color: '#22333B' }}>Full Name</Label>
         <Input
           id="name"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
           placeholder="John Doe"
-          className="bg-white/[0.05] border-white/[0.08] text-white placeholder:text-slate-600 focus:border-indigo-500/50 h-12 rounded-xl"
+          className={inputClass}
+          style={inputStyle}
         />
       </div>
       <div>
-        <Label htmlFor="email" className="text-slate-300 text-sm mb-2 block">Email Address</Label>
+        <Label htmlFor="email" className="text-sm mb-2 block font-medium" style={{ color: '#22333B' }}>Email Address</Label>
         <Input
           id="email"
           type="email"
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
           placeholder="john@company.com"
-          className="bg-white/[0.05] border-white/[0.08] text-white placeholder:text-slate-600 focus:border-indigo-500/50 h-12 rounded-xl"
+          className={inputClass}
+          style={inputStyle}
         />
       </div>
       <div>
-        <Label htmlFor="message" className="text-slate-300 text-sm mb-2 block">Your Message</Label>
+        <Label htmlFor="message" className="text-sm mb-2 block font-medium" style={{ color: '#22333B' }}>Your Message</Label>
         <Textarea
           id="message"
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
           placeholder="Tell us about your project..."
           rows={5}
-          className="bg-white/[0.05] border-white/[0.08] text-white placeholder:text-slate-600 focus:border-indigo-500/50 rounded-xl resize-none"
+          className="rounded-xl text-sm resize-none border transition-all duration-200"
+          style={inputStyle}
         />
       </div>
 
-      {/* Math CAPTCHA */}
-      <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06]">
-        <Label className="text-slate-400 text-xs uppercase tracking-wider mb-2 block">Human Verification</Label>
-        <div className="flex items-center gap-3">
-          <span className="text-white font-mono text-lg font-bold bg-white/[0.05] px-4 py-2 rounded-lg">
-            {captcha.question} = ?
-          </span>
-          <Input
-            value={captchaInput}
-            onChange={(e) => setCaptchaInput(e.target.value)}
-            placeholder="Answer"
-            className="bg-white/[0.05] border-white/[0.08] text-white placeholder:text-slate-600 focus:border-indigo-500/50 h-11 rounded-lg w-28"
-          />
-        </div>
+      {/* Google reCAPTCHA */}
+      <div>
+        <div id="recaptcha-container" className="mt-1" />
+        {!recaptchaLoaded && (
+          <div className="flex items-center gap-2 text-sm" style={{ color: '#5E503F' }}>
+            <Loader2 className="w-4 h-4 animate-spin" /> Loading verification...
+          </div>
+        )}
       </div>
 
       <AnimatePresence>
@@ -130,27 +157,28 @@ export default function ContactForm() {
             initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="text-red-400 text-sm"
+            className="text-red-600 text-sm font-medium"
           >
             {error}
           </motion.p>
         )}
       </AnimatePresence>
 
-      <Button
+      <button
         type="submit"
         disabled={sending}
-        className="w-full h-12 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold transition-all duration-300 hover:shadow-[0_0_30px_rgba(99,102,241,0.3)]"
+        className="w-full h-12 rounded-xl text-sm font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex items-center justify-center gap-2"
+        style={{ background: '#22333B', color: '#EAE0D5' }}
       >
         {sending ? (
           <Loader2 className="w-5 h-5 animate-spin" />
         ) : (
-          <span className="flex items-center gap-2">
+          <>
             <Send className="w-4 h-4" />
             Send Message
-          </span>
+          </>
         )}
-      </Button>
+      </button>
     </form>
   );
 }
