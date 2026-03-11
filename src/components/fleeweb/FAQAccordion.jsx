@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     q: 'How long does it take to build a website?',
-    a: 'Most standard websites are delivered in just a few days — often within 3–5 business days. Complex web applications with custom features, integrations, and backends typically take 1–2 weeks. We work in agile sprints and provide regular progress updates throughout, so you\'re never left in the dark.'
+    a: "Most standard websites are delivered in just a few days — often within 3–5 business days. Complex web applications with custom features, integrations, and backends typically take 1–2 weeks. We work in agile sprints and provide regular progress updates throughout, so you're never left in the dark."
   },
   {
     q: 'Do you provide hosting services?',
@@ -51,18 +51,18 @@ function FAQItem({ faq, isOpen, onToggle }) {
       className="rounded-xl overflow-hidden transition-all duration-300"
       style={{
         background: isOpen ? '#fff' : 'rgba(255,255,255,0.6)',
-        border: `1.5px solid ${isOpen ? '#C6AC8F' : 'rgba(198,172,143,0.4)'}`,
-        boxShadow: isOpen ? '0 4px 20px rgba(10,9,8,0.08)' : 'none'
+        border: `1.5px solid ${isOpen ? '#90E0EF' : 'rgba(144,224,239,0.4)'}`,
+        boxShadow: isOpen ? '0 4px 20px rgba(2,62,138,0.08)' : 'none'
       }}
     >
       <button
         onClick={onToggle}
         className="w-full flex items-center justify-between px-6 py-5 text-left"
       >
-        <span className="font-semibold text-sm md:text-base pr-4" style={{ color: '#0A0908' }}>{faq.q}</span>
+        <span className="font-semibold text-sm md:text-base pr-4" style={{ color: '#03045E' }}>{faq.q}</span>
         <ChevronDown
           className="w-5 h-5 flex-shrink-0 transition-transform duration-300"
-          style={{ color: isOpen ? '#5E503F' : '#C6AC8F', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+          style={{ color: isOpen ? '#023E8A' : '#90E0EF', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
         />
       </button>
       <AnimatePresence>
@@ -73,7 +73,7 @@ function FAQItem({ faq, isOpen, onToggle }) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <div className="px-6 pb-5 text-sm leading-relaxed" style={{ color: '#22333B' }}>
+            <div className="px-6 pb-5 text-sm leading-relaxed" style={{ color: '#0077B6' }}>
               {faq.a}
             </div>
           </motion.div>

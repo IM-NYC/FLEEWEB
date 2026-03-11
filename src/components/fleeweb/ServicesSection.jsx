@@ -15,19 +15,19 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="py-28 relative" style={{ background: '#F5F0EA' }}>
-      <div className="absolute inset-0 opacity-[0.04]"
+    <section id="services" className="py-28 relative" style={{ background: '#E0F7FC' }}>
+      <div className="absolute inset-0 opacity-[0.05]"
         style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, #5E503F 1px, transparent 0)',
+          backgroundImage: 'radial-gradient(circle at 1px 1px, #0077B6 1px, transparent 0)',
           backgroundSize: '36px 36px'
         }}
       />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: '#5E503F' }}>What We Do</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-3" style={{ color: '#0A0908' }}>Services Built for Growth</h2>
-          <p className="mt-3 max-w-lg mx-auto text-sm" style={{ color: '#22333B' }}>
+          <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: '#0077B6' }}>What We Do</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-3" style={{ color: '#03045E' }}>Services Built for Growth</h2>
+          <p className="mt-3 max-w-lg mx-auto text-sm" style={{ color: '#023E8A' }}>
             End-to-end web solutions designed to scale with your business.
           </p>
         </div>
@@ -43,16 +43,16 @@ export default function ServicesSection() {
               className="group p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1"
               style={{
                 background: '#fff',
-                border: '1.5px solid #C6AC8F',
-                boxShadow: '0 2px 12px rgba(10,9,8,0.05)'
+                border: '1.5px solid #90E0EF',
+                boxShadow: '0 2px 12px rgba(2,62,138,0.06)'
               }}
             >
               <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300"
-                style={{ background: '#EAE0D5' }}>
-                <service.icon className="w-5 h-5" style={{ color: '#5E503F' }} />
+                style={{ background: '#CAF0F8' }}>
+                <service.icon className="w-5 h-5" style={{ color: '#023E8A' }} />
               </div>
-              <h3 className="font-bold text-base mb-2" style={{ color: '#0A0908' }}>{service.title}</h3>
-              <p className="text-sm leading-relaxed" style={{ color: '#22333B' }}>{service.desc}</p>
+              <h3 className="font-bold text-base mb-2" style={{ color: '#03045E' }}>{service.title}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: '#0077B6' }}>{service.desc}</p>
             </motion.div>
           ))}
         </div>

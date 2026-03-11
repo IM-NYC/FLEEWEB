@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
@@ -72,11 +71,10 @@ export default function ContactForm() {
     }
   }, [recaptchaLoaded]);
 
-  const inputClass = "h-12 rounded-xl text-sm border focus:ring-2 focus:ring-offset-0 transition-all duration-200";
   const inputStyle = {
-    background: '#FAF8F5',
-    borderColor: '#C6AC8F',
-    color: '#0A0908',
+    background: '#F0FBFF',
+    borderColor: '#90E0EF',
+    color: '#03045E',
   };
 
   if (sent) {
@@ -87,15 +85,15 @@ export default function ContactForm() {
         className="text-center py-16"
       >
         <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5"
-          style={{ background: 'rgba(94,80,63,0.12)' }}>
-          <CheckCircle className="w-8 h-8" style={{ color: '#5E503F' }} />
+          style={{ background: 'rgba(2,62,138,0.1)' }}>
+          <CheckCircle className="w-8 h-8" style={{ color: '#023E8A' }} />
         </div>
-        <h3 className="text-2xl font-bold mb-2" style={{ color: '#0A0908' }}>Message Sent!</h3>
-        <p style={{ color: '#22333B' }}>We'll get back to you within 24 hours.</p>
+        <h3 className="text-2xl font-bold mb-2" style={{ color: '#03045E' }}>Message Sent!</h3>
+        <p style={{ color: '#0077B6' }}>We'll get back to you within 24 hours.</p>
         <button
           onClick={() => setSent(false)}
           className="mt-6 px-6 py-2.5 rounded-xl text-sm font-medium border transition-all duration-200 hover:shadow-md"
-          style={{ border: '1.5px solid #C6AC8F', color: '#5E503F', background: 'transparent' }}
+          style={{ border: '1.5px solid #90E0EF', color: '#023E8A', background: 'transparent' }}
         >
           Send Another Message
         </button>
@@ -106,30 +104,30 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <Label htmlFor="name" className="text-sm mb-2 block font-medium" style={{ color: '#22333B' }}>Full Name</Label>
+        <Label htmlFor="name" className="text-sm mb-2 block font-medium" style={{ color: '#023E8A' }}>Full Name</Label>
         <Input
           id="name"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
           placeholder="John Doe"
-          className={inputClass}
+          className="h-12 rounded-xl text-sm border focus:ring-2 focus:ring-offset-0 transition-all duration-200"
           style={inputStyle}
         />
       </div>
       <div>
-        <Label htmlFor="email" className="text-sm mb-2 block font-medium" style={{ color: '#22333B' }}>Email Address</Label>
+        <Label htmlFor="email" className="text-sm mb-2 block font-medium" style={{ color: '#023E8A' }}>Email Address</Label>
         <Input
           id="email"
           type="email"
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
           placeholder="john@company.com"
-          className={inputClass}
+          className="h-12 rounded-xl text-sm border focus:ring-2 focus:ring-offset-0 transition-all duration-200"
           style={inputStyle}
         />
       </div>
       <div>
-        <Label htmlFor="message" className="text-sm mb-2 block font-medium" style={{ color: '#22333B' }}>Your Message</Label>
+        <Label htmlFor="message" className="text-sm mb-2 block font-medium" style={{ color: '#023E8A' }}>Your Message</Label>
         <Textarea
           id="message"
           value={form.message}
@@ -141,11 +139,10 @@ export default function ContactForm() {
         />
       </div>
 
-      {/* Google reCAPTCHA */}
       <div>
         <div id="recaptcha-container" className="mt-1" />
         {!recaptchaLoaded && (
-          <div className="flex items-center gap-2 text-sm" style={{ color: '#5E503F' }}>
+          <div className="flex items-center gap-2 text-sm" style={{ color: '#0077B6' }}>
             <Loader2 className="w-4 h-4 animate-spin" /> Loading verification...
           </div>
         )}
@@ -168,7 +165,7 @@ export default function ContactForm() {
         type="submit"
         disabled={sending}
         className="w-full h-12 rounded-xl text-sm font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex items-center justify-center gap-2"
-        style={{ background: '#22333B', color: '#EAE0D5' }}
+        style={{ background: '#023E8A', color: '#CAF0F8' }}
       >
         {sending ? (
           <Loader2 className="w-5 h-5 animate-spin" />

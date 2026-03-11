@@ -6,7 +6,7 @@ const reviews = [
   { name: 'James Rodriguez', role: 'Founder, UrbanEats', text: 'Professional, fast, and incredibly talented. Our e-commerce site loads in under 2 seconds now.' },
   { name: 'Emily Chen', role: 'Marketing Director, Pulse Media', text: 'The team delivered a stunning website on time and under budget. Highly recommend their services.' },
   { name: 'David Thompson', role: 'CTO, NexGen Solutions', text: 'Their full-stack expertise is the real deal. Security, performance, design — they nail everything.' },
-  { name: 'Lauren Kim', role: 'Owner, Bloom Studio', text: 'From concept to launch in 3 weeks. FleeWeb made it effortless and the result is beautiful.' },
+  { name: 'Lauren Kim', role: 'Owner, Bloom Studio', text: 'From concept to launch in 3 days. FleeWeb made it effortless and the result is beautiful.' },
   { name: 'Michael Patel', role: 'VP Engineering, DataVault', text: 'We needed enterprise-grade security and performance. FleeWeb exceeded every expectation we had.' },
   { name: 'Rachel Foster', role: 'Founder, ClearView Analytics', text: 'The best investment we made this year. Our conversion rates doubled after the redesign.' },
   { name: 'Nathan Brooks', role: 'Director, Summit Financial', text: 'Responsive, reliable, and ridiculously good at what they do. A+ team all around.' },
@@ -15,21 +15,21 @@ const reviews = [
 function ReviewCard({ review }) {
   return (
     <div className="flex-shrink-0 w-[340px] mx-3 p-6 rounded-2xl"
-      style={{ background: '#fff', border: '1.5px solid #C6AC8F', boxShadow: '0 2px 16px rgba(10,9,8,0.06)' }}>
+      style={{ background: '#fff', border: '1.5px solid #90E0EF', boxShadow: '0 2px 16px rgba(2,62,138,0.07)' }}>
       <div className="flex gap-1 mb-4">
         {[...Array(5)].map((_, i) => (
-          <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+          <Star key={i} className="w-4 h-4 fill-sky-400 text-sky-400" />
         ))}
       </div>
-      <p className="text-sm leading-relaxed mb-5" style={{ color: '#22333B' }}>"{review.text}"</p>
+      <p className="text-sm leading-relaxed mb-5" style={{ color: '#0077B6' }}>"{review.text}"</p>
       <div className="flex items-center gap-3">
         <div className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold"
-          style={{ background: '#C6AC8F', color: '#0A0908' }}>
+          style={{ background: '#90E0EF', color: '#023E8A' }}>
           {review.name.split(' ').map(n => n[0]).join('')}
         </div>
         <div>
-          <div className="text-sm font-semibold" style={{ color: '#0A0908' }}>{review.name}</div>
-          <div className="text-xs" style={{ color: '#5E503F' }}>{review.role}</div>
+          <div className="text-sm font-semibold" style={{ color: '#03045E' }}>{review.name}</div>
+          <div className="text-xs" style={{ color: '#0077B6' }}>{review.role}</div>
         </div>
       </div>
     </div>
@@ -40,11 +40,11 @@ export default function ReviewsCarousel() {
   const doubledReviews = [...reviews, ...reviews];
 
   return (
-    <section className="py-24 overflow-hidden" style={{ background: '#EAE0D5' }}>
+    <section className="py-24 overflow-hidden" style={{ background: '#CAF0F8' }}>
       <div className="text-center mb-14 px-6">
-        <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: '#5E503F' }}>Testimonials</span>
-        <h2 className="text-3xl md:text-4xl font-bold mt-3" style={{ color: '#0A0908' }}>Trusted by Industry Leaders</h2>
-        <p className="mt-3 max-w-lg mx-auto text-sm" style={{ color: '#22333B' }}>
+        <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: '#0077B6' }}>Testimonials</span>
+        <h2 className="text-3xl md:text-4xl font-bold mt-3" style={{ color: '#03045E' }}>Trusted by Industry Leaders</h2>
+        <p className="mt-3 max-w-lg mx-auto text-sm" style={{ color: '#023E8A' }}>
           Don't just take our word for it — hear from the businesses we've helped grow.
         </p>
       </div>

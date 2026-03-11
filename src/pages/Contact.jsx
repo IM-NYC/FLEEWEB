@@ -13,19 +13,19 @@ const contactInfo = [
 
 export default function Contact() {
   return (
-    <div className="min-h-screen" style={{ background: '#F5F0EA' }}>
+    <div className="min-h-screen" style={{ background: '#E0F7FC' }}>
       {/* Header */}
-      <div className="pt-32 pb-16 text-center px-6" style={{ background: '#EAE0D5' }}>
+      <div className="pt-32 pb-16 text-center px-6" style={{ background: '#CAF0F8' }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: '#5E503F' }}>Get In Touch</span>
-          <h1 className="text-3xl md:text-5xl font-bold mt-3" style={{ color: '#0A0908' }}>
+          <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: '#0077B6' }}>Get In Touch</span>
+          <h1 className="text-3xl md:text-5xl font-bold mt-3" style={{ color: '#03045E' }}>
             Let's Build Together
           </h1>
-          <p className="mt-4 max-w-lg mx-auto text-sm" style={{ color: '#22333B' }}>
+          <p className="mt-4 max-w-lg mx-auto text-sm" style={{ color: '#023E8A' }}>
             Ready to start your project? Reach out and we'll respond within 24 hours.
           </p>
         </motion.div>
@@ -49,17 +49,17 @@ export default function Contact() {
                   className="flex items-start gap-4 p-5 rounded-xl transition-all duration-300 block"
                   style={{
                     background: '#fff',
-                    border: '1.5px solid #C6AC8F',
-                    boxShadow: '0 2px 10px rgba(10,9,8,0.04)'
+                    border: '1.5px solid #90E0EF',
+                    boxShadow: '0 2px 10px rgba(2,62,138,0.05)'
                   }}
                 >
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                    style={{ background: 'rgba(198,172,143,0.2)' }}>
-                    <item.icon className="w-5 h-5" style={{ color: '#5E503F' }} />
+                    style={{ background: 'rgba(144,224,239,0.25)' }}>
+                    <item.icon className="w-5 h-5" style={{ color: '#023E8A' }} />
                   </div>
                   <div>
-                    <div className="text-xs uppercase tracking-wider mb-1 font-medium" style={{ color: '#C6AC8F' }}>{item.label}</div>
-                    <div className="text-sm font-semibold" style={{ color: '#0A0908' }}>{item.value}</div>
+                    <div className="text-xs uppercase tracking-wider mb-1 font-medium" style={{ color: '#90E0EF' }}>{item.label}</div>
+                    <div className="text-sm font-semibold" style={{ color: '#03045E' }}>{item.value}</div>
                   </div>
                 </Wrapper>
               );
@@ -69,12 +69,12 @@ export default function Contact() {
           {/* Form */}
           <motion.div
             className="lg:col-span-3 p-8 rounded-2xl"
-            style={{ background: '#fff', border: '1.5px solid #C6AC8F', boxShadow: '0 4px 24px rgba(10,9,8,0.07)' }}
+            style={{ background: '#fff', border: '1.5px solid #90E0EF', boxShadow: '0 4px 24px rgba(2,62,138,0.08)' }}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h3 className="font-bold text-lg mb-6" style={{ color: '#0A0908' }}>Send Us a Message</h3>
+            <h3 className="font-bold text-lg mb-6" style={{ color: '#03045E' }}>Send Us a Message</h3>
             <ContactForm />
           </motion.div>
         </div>
