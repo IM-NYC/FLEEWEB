@@ -50,19 +50,19 @@ function FAQItem({ faq, isOpen, onToggle }) {
     <div
       className="rounded-xl overflow-hidden transition-all duration-300"
       style={{
-        background: isOpen ? '#fff' : 'rgba(255,255,255,0.6)',
-        border: `1.5px solid ${isOpen ? '#90E0EF' : 'rgba(144,224,239,0.4)'}`,
-        boxShadow: isOpen ? '0 4px 20px rgba(2,62,138,0.08)' : 'none'
+        background: isOpen ? '#1A2B3C' : 'rgba(255,255,255,0.05)',
+        border: `1.5px solid ${isOpen ? 'rgba(30,111,217,0.5)' : 'rgba(192,192,192,0.15)'}`,
+        boxShadow: isOpen ? '0 4px 20px rgba(0,0,0,0.2)' : 'none'
       }}
     >
       <button
         onClick={onToggle}
         className="w-full flex items-center justify-between px-6 py-5 text-left"
       >
-        <span className="font-semibold text-sm md:text-base pr-4" style={{ color: '#03045E' }}>{faq.q}</span>
+        <span className="font-semibold text-sm md:text-base pr-4" style={{ color: '#F4F4F4' }}>{faq.q}</span>
         <ChevronDown
           className="w-5 h-5 flex-shrink-0 transition-transform duration-300"
-          style={{ color: isOpen ? '#023E8A' : '#90E0EF', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+          style={{ color: isOpen ? '#1E6FD9' : '#C0C0C0', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
         />
       </button>
       <AnimatePresence>
@@ -73,7 +73,7 @@ function FAQItem({ faq, isOpen, onToggle }) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <div className="px-6 pb-5 text-sm leading-relaxed" style={{ color: '#0077B6' }}>
+            <div className="px-6 pb-5 text-sm leading-relaxed" style={{ color: '#C0C0C0' }}>
               {faq.a}
             </div>
           </motion.div>

@@ -26,31 +26,31 @@ export default function HeroSection() {
       className="relative min-h-[92vh] flex items-center justify-center overflow-hidden"
       style={{
         background: `
-          radial-gradient(ellipse at ${mousePos.x}% ${mousePos.y}%, rgba(144,224,239,0.45) 0%, transparent 55%),
-          radial-gradient(ellipse at ${100 - mousePos.x}% ${100 - mousePos.y}%, rgba(2,62,138,0.12) 0%, transparent 55%),
-          linear-gradient(160deg, #CAF0F8 0%, #AEE6F5 50%, #CAF0F8 100%)
+          radial-gradient(ellipse at ${mousePos.x}% ${mousePos.y}%, rgba(30,111,217,0.25) 0%, transparent 55%),
+          radial-gradient(ellipse at ${100 - mousePos.x}% ${100 - mousePos.y}%, rgba(30,111,217,0.1) 0%, transparent 55%),
+          linear-gradient(160deg, #0D1B2A 0%, #112236 50%, #0D1B2A 100%)
         `,
         transition: 'background 0.3s ease'
       }}
     >
       {/* Decorative floating blobs */}
       <motion.div
-        className="absolute w-96 h-96 rounded-full opacity-20 pointer-events-none"
-        style={{ background: 'radial-gradient(circle, #90E0EF, transparent)', top: '5%', left: '0%' }}
+        className="absolute w-96 h-96 rounded-full opacity-10 pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #1E6FD9, transparent)', top: '5%', left: '0%' }}
         animate={{ y: [0, -25, 0], x: [0, 15, 0] }}
         transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute w-64 h-64 rounded-full opacity-15 pointer-events-none"
-        style={{ background: 'radial-gradient(circle, #0077B6, transparent)', bottom: '8%', right: '5%' }}
+        className="absolute w-64 h-64 rounded-full opacity-10 pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #1E6FD9, transparent)', bottom: '8%', right: '5%' }}
         animate={{ y: [0, 20, 0], x: [0, -12, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* Subtle dot grid */}
-      <div className="absolute inset-0 opacity-[0.06]"
+      <div className="absolute inset-0 opacity-[0.05]"
         style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, #0077B6 1px, transparent 0)',
+          backgroundImage: 'radial-gradient(circle at 1px 1px, #C0C0C0 1px, transparent 0)',
           backgroundSize: '40px 40px'
         }}
       />
@@ -62,28 +62,28 @@ export default function HeroSection() {
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase"
-            style={{ color: '#023E8A', background: 'rgba(2,62,138,0.08)', border: '1px solid rgba(2,62,138,0.2)' }}>
+            style={{ color: '#1E6FD9', background: 'rgba(30,111,217,0.12)', border: '1px solid rgba(30,111,217,0.3)' }}>
             New York · Full-Stack Excellence
           </span>
         </motion.div>
 
         <motion.h1
           className="mt-7 text-4xl sm:text-5xl md:text-7xl font-bold leading-[1.08] tracking-tight"
-          style={{ color: '#03045E' }}
+          style={{ color: '#F4F4F4' }}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
         >
           We Build Digital
           <br />
-          <span style={{ color: '#0077B6' }}>
+          <span style={{ color: '#1E6FD9' }}>
             Experiences That Perform
           </span>
         </motion.h1>
 
         <motion.p
           className="mt-6 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
-          style={{ color: '#023E8A' }}
+          style={{ color: '#C0C0C0' }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
@@ -101,15 +101,15 @@ export default function HeroSection() {
         >
           <Link
             to={createPageUrl('Contact')}
-            className="group relative inline-flex items-center justify-center px-8 py-4 text-sm font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg"
-            style={{ background: '#023E8A', color: '#CAF0F8' }}
+            className="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            style={{ background: '#1E6FD9', color: '#F4F4F4' }}
           >
             Contact Us
           </Link>
           <a
             href="#services"
-            className="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md"
-            style={{ color: '#023E8A', background: 'rgba(2,62,138,0.07)', border: '1.5px solid rgba(2,62,138,0.2)' }}
+            className="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105"
+            style={{ color: '#F4F4F4', background: 'rgba(244,244,244,0.06)', border: '1.5px solid rgba(192,192,192,0.3)' }}
           >
             View Services
           </a>
@@ -128,8 +128,8 @@ export default function HeroSection() {
             { value: '150+', label: 'Projects' },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="text-2xl md:text-3xl font-bold" style={{ color: '#03045E' }}>{stat.value}</div>
-              <div className="text-xs mt-1 uppercase tracking-wider font-medium" style={{ color: '#0077B6' }}>{stat.label}</div>
+              <div className="text-2xl md:text-3xl font-bold" style={{ color: '#F4F4F4' }}>{stat.value}</div>
+              <div className="text-xs mt-1 uppercase tracking-wider font-medium" style={{ color: '#1E6FD9' }}>{stat.label}</div>
             </div>
           ))}
         </motion.div>

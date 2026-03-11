@@ -15,21 +15,21 @@ const reviews = [
 function ReviewCard({ review }) {
   return (
     <div className="flex-shrink-0 w-[340px] mx-3 p-6 rounded-2xl"
-      style={{ background: '#fff', border: '1.5px solid #90E0EF', boxShadow: '0 2px 16px rgba(2,62,138,0.07)' }}>
+      style={{ background: '#1A2B3C', border: '1.5px solid rgba(30,111,217,0.25)', boxShadow: '0 2px 16px rgba(0,0,0,0.2)' }}>
       <div className="flex gap-1 mb-4">
         {[...Array(5)].map((_, i) => (
-          <Star key={i} className="w-4 h-4 fill-sky-400 text-sky-400" />
+          <Star key={i} className="w-4 h-4 fill-blue-400 text-blue-400" />
         ))}
       </div>
-      <p className="text-sm leading-relaxed mb-5" style={{ color: '#0077B6' }}>"{review.text}"</p>
+      <p className="text-sm leading-relaxed mb-5" style={{ color: '#C0C0C0' }}>"{review.text}"</p>
       <div className="flex items-center gap-3">
         <div className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold"
-          style={{ background: '#90E0EF', color: '#023E8A' }}>
+          style={{ background: '#1E6FD9', color: '#F4F4F4' }}>
           {review.name.split(' ').map(n => n[0]).join('')}
         </div>
         <div>
-          <div className="text-sm font-semibold" style={{ color: '#03045E' }}>{review.name}</div>
-          <div className="text-xs" style={{ color: '#0077B6' }}>{review.role}</div>
+          <div className="text-sm font-semibold" style={{ color: '#F4F4F4' }}>{review.name}</div>
+          <div className="text-xs" style={{ color: '#1E6FD9' }}>{review.role}</div>
         </div>
       </div>
     </div>
@@ -40,16 +40,15 @@ export default function ReviewsCarousel() {
   const doubledReviews = [...reviews, ...reviews];
 
   return (
-    <section className="py-24 overflow-hidden" style={{ background: '#CAF0F8' }}>
+    <section className="py-24 overflow-hidden" style={{ background: '#0D1B2A' }}>
       <div className="text-center mb-14 px-6">
-        <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: '#0077B6' }}>Testimonials</span>
-        <h2 className="text-3xl md:text-4xl font-bold mt-3" style={{ color: '#03045E' }}>Trusted by Industry Leaders</h2>
-        <p className="mt-3 max-w-lg mx-auto text-sm" style={{ color: '#023E8A' }}>
+        <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: '#1E6FD9' }}>Testimonials</span>
+        <h2 className="text-3xl md:text-4xl font-bold mt-3" style={{ color: '#F4F4F4' }}>Trusted by Industry Leaders</h2>
+        <p className="mt-3 max-w-lg mx-auto text-sm" style={{ color: '#C0C0C0' }}>
           Don't just take our word for it — hear from the businesses we've helped grow.
         </p>
       </div>
 
-      {/* Row 1 - scrolls left */}
       <div className="relative mb-4">
         <div className="flex animate-scroll-left">
           {doubledReviews.map((review, i) => (
@@ -58,7 +57,6 @@ export default function ReviewsCarousel() {
         </div>
       </div>
 
-      {/* Row 2 - scrolls right */}
       <div className="relative">
         <div className="flex animate-scroll-right">
           {[...doubledReviews].reverse().map((review, i) => (
