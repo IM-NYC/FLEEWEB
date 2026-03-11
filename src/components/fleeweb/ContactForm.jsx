@@ -57,9 +57,10 @@ export default function ContactForm() {
   };
 
   useEffect(() => {
-    if (recaptchaLoaded && window.grecaptcha && recaptchaRef.current === null) {
+    if (recaptchaLoaded && window.grecaptcha && !recaptchaRendered.current) {
       window.grecaptcha.ready(() => {
-        if (document.getElementById('recaptcha-container')?.childElementCount === 0) {
+        if (!recaptchaRendered.current && document.getElementById('recaptcha-container')?.childElementCount === 0) {
+          recaptchaRendered.current = true;
           recaptchaRef.current = window.grecaptcha.render('recaptcha-container', {
             sitekey: RECAPTCHA_SITE_KEY,
             theme: 'dark',
