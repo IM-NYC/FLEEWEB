@@ -56,10 +56,14 @@ export default function ContactForm() {
   };
 
   useEffect(() => {
-    if (recaptchaLoaded && window.grecaptcha && !recaptchaRef.current) {
-      recaptchaRef.current = window.grecaptcha.render('recaptcha-container', {
-        sitekey: RECAPTCHA_SITE_KEY,
-        theme: 'dark',
+    if (recaptchaLoaded && window.grecaptcha && recaptchaRef.current === null) {
+      window.grecaptcha.ready(() => {
+        if (document.getElementById('recaptcha-container')?.childElementCount === 0) {
+          recaptchaRef.current = window.grecaptcha.render('recaptcha-container', {
+            sitekey: RECAPTCHA_SITE_KEY,
+            theme: 'dark',
+          });
+        }
       });
     }
   }, [recaptchaLoaded]);
