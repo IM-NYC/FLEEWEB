@@ -29,6 +29,7 @@ export default function ContactForm() {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
   const recaptchaRef = useRef(null);
+  const recaptchaRendered = useRef(false);
   const recaptchaLoaded = useRecaptcha();
 
   const handleSubmit = async (e) => {
