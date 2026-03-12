@@ -1,58 +1,57 @@
 import React from 'react';
 
-// Celtic triskelion — uses a single pre-computed filled path
-// The shape is one continuous filled silhouette (like the reference image)
+// Celtic triskelion — three thick spiral arms radiating from center
+// Each arm: starts at center (0,0), curves outward into a circle
+// Uses clipPath per arm so spirals don't visually overlap each other
 export default function Triskele({ size = 32, color = '#C0C0C0', opacity = 1 }) {
+  // A single spiral arm: starts near center, expands into a full clockwise loop
+  // Drawn as a thick stroke so it looks like the filled reference
+  const arm = (
+    <path
+      d="M 0,0
+         C 3,-6  10,-12  18,-14
+         C 28,-17  40,-10  44, 2
+         C 48, 14  42, 28  32, 34
+         C 20, 42   4, 40  -6, 30
+         C -18, 18  -18,  2  -8, -8
+         C  2,-18  18,-20  28,-12
+         C 40, -2  42, 16  34, 26
+         C 26, 38  10, 42   0, 36"
+      fill="none"
+      stroke={color}
+      strokeWidth="12"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  );
+
   return (
     <svg
       width={size}
       height={size}
-      viewBox="-1 -1 2 2"
+      viewBox="-60 -70 120 130"
       xmlns="http://www.w3.org/2000/svg"
       style={{ opacity }}
     >
-      {/*
-        Triskelion built from three identical spiral arms, each a thick filled shape.
-        Each arm starts at center, curls outward into a full circle, and tightens to a point.
-        The three arms are rotated 120° apart.
-      */}
+      <defs>
+        {/* Each arm gets a clip so only its 120° sector is visible — prevents overlap */}
+        <clipPath id="clip0">
+          <polygon points="0,0  0,-200  173,-100" />
+        </clipPath>
+        <clipPath id="clip1">
+          <polygon points="0,0  173,-100  173,100  0,200" />
+        </clipPath>
+        <clipPath id="clip2">
+          <polygon points="0,0  -173,-100  0,-200" />
+        </clipPath>
+      </defs>
       <g>
-        {[0, 120, 240].map((deg) => (
-          <path
-            key={deg}
-            fill={color}
-            transform={`rotate(${deg})`}
-            d="
-              M 0.04 -0.04
-              C 0.04 -0.04, 0.08 -0.18, 0.18 -0.22
-              C 0.28 -0.26, 0.42 -0.20, 0.46 -0.08
-              C 0.50  0.04, 0.44  0.18, 0.34  0.24
-              C 0.22  0.30, 0.08  0.26,-0.02  0.16
-              C -0.14  0.04,-0.14 -0.12,-0.04 -0.22
-              C  0.06 -0.32, 0.22 -0.36, 0.36 -0.30
-              C  0.52 -0.22, 0.60 -0.04, 0.58  0.14
-              C  0.56  0.32, 0.44  0.48, 0.28  0.56
-              C  0.10  0.64,-0.10  0.62,-0.26  0.52
-              C -0.44  0.40,-0.52  0.20,-0.48  0.02
-              C -0.46 -0.02,-0.44 -0.06,-0.42 -0.10
-
-              C -0.44 -0.06,-0.46 -0.02,-0.44  0.02
-              C -0.48  0.18,-0.40  0.36,-0.24  0.46
-              C -0.10  0.54, 0.08  0.56, 0.24  0.48
-              C  0.40  0.40, 0.50  0.26, 0.52  0.10
-              C  0.54 -0.06, 0.46 -0.22, 0.32 -0.28
-              C  0.20 -0.34, 0.06 -0.30,-0.02 -0.20
-              C -0.10 -0.10,-0.10  0.04,-0.02  0.12
-              C  0.06  0.22, 0.18  0.26, 0.28  0.20
-              C  0.38  0.14, 0.42  0.02, 0.38 -0.08
-              C  0.35 -0.16, 0.26 -0.22, 0.16 -0.20
-              C  0.10 -0.18, 0.06 -0.13, 0.06 -0.08
-              C  0.05 -0.05, 0.04 -0.04, 0.04 -0.04
-              Z
-            "
-          />
-        ))}
+        <g transform="rotate(-90)" clipPath="url(#clip0)">{arm}</g>
+        <g transform="rotate(30)"  clipPath="url(#clip1)">{arm}</g>
+        <g transform="rotate(150)" clipPath="url(#clip2)">{arm}</g>
       </g>
+      {/* Center fill circle */}
+      <circle cx="0" cy="0" r="7" fill={color} />
     </svg>
   );
 }
