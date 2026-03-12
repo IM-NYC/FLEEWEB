@@ -1,29 +1,37 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-// Inline accurate triskelion SVG for the background ghost
-const SPIRAL_PATH = `M0,0
-  C-2,-5 -6,-8 -10,-8
-  C-20,-8 -28,2 -26,14
-  C-24,26 -12,34 0,34
-  C14,34 26,22 28,8
-  C30,-8 18,-22 4,-28
-  C-14,-36 -36,-28 -46,-12
-  C-58,6 -52,32 -36,44
-  C-20,58 4,58 20,48
-  C38,36 44,12 38,-8
-  C30,-32 8,-50 -16,-54
-  C-44,-60 -70,-44 -80,-18
-  C-90,10 -78,42 -54,56`;
+const GHOST_SPIRAL =
+  'M0,0 ' +
+  'C2,-3 5,-6 9,-8 ' +
+  'C15,-11 23,-9 27,-3 ' +
+  'C31,3 29,12 23,17 ' +
+  'C16,23 6,23 0,17 ' +
+  'C-8,10 -8,-2 -1,-9 ' +
+  'C7,-17 19,-18 28,-11 ' +
+  'C38,-3 40,10 35,21 ' +
+  'C30,33 18,40 5,40 ' +
+  'C-11,40 -25,30 -29,16 ' +
+  'C-34,1 -27,-15 -14,-22 ' +
+  'C-1,-30 16,-28 25,-17 ' +
+  'C18,-24 7,-25 0,-18 ' +
+  'C-9,-10 -10,3 -4,12 ' +
+  'C2,21 14,25 24,20 ' +
+  'C35,14 38,2 33,-8 ' +
+  'C27,-19 14,-24 3,-18 ' +
+  'C-5,-13 -7,-3 -3,5 ' +
+  'C1,13 11,16 19,11 ' +
+  'C26,7 27,-1 22,-7 ' +
+  'C18,-11 12,-12 8,-8 ' +
+  'C5,-5 4,-2 5,1 ' +
+  'Z';
 
 function GhostTriskele() {
   return (
-    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <g transform="translate(100,105)">
+    <svg viewBox="-50 -55 100 105" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <g fillRule="evenodd">
         {[0, 120, 240].map((angle) => (
-          <g key={angle} transform={`rotate(${angle})`}>
-            <path d={SPIRAL_PATH} stroke="white" strokeWidth="16" strokeLinecap="round" fill="none" />
-          </g>
+          <path key={angle} fill="white" d={GHOST_SPIRAL} transform={`rotate(${angle})`} />
         ))}
       </g>
     </svg>
