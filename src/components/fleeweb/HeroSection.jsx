@@ -1,40 +1,18 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-const GHOST_SPIRAL =
-  'M0,0 ' +
-  'C2,-3 5,-6 9,-8 ' +
-  'C15,-11 23,-9 27,-3 ' +
-  'C31,3 29,12 23,17 ' +
-  'C16,23 6,23 0,17 ' +
-  'C-8,10 -8,-2 -1,-9 ' +
-  'C7,-17 19,-18 28,-11 ' +
-  'C38,-3 40,10 35,21 ' +
-  'C30,33 18,40 5,40 ' +
-  'C-11,40 -25,30 -29,16 ' +
-  'C-34,1 -27,-15 -14,-22 ' +
-  'C-1,-30 16,-28 25,-17 ' +
-  'C18,-24 7,-25 0,-18 ' +
-  'C-9,-10 -10,3 -4,12 ' +
-  'C2,21 14,25 24,20 ' +
-  'C35,14 38,2 33,-8 ' +
-  'C27,-19 14,-24 3,-18 ' +
-  'C-5,-13 -7,-3 -3,5 ' +
-  'C1,13 11,16 19,11 ' +
-  'C26,7 27,-1 22,-7 ' +
-  'C18,-11 12,-12 8,-8 ' +
-  'C5,-5 4,-2 5,1 ' +
-  'Z';
+const TRISKELION_URL = 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69ae38c191a1a1d5925fd401/41f84d60e_99389_triskelion.png';
 
 function GhostTriskele() {
   return (
-    <svg viewBox="-50 -55 100 105" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <g fillRule="evenodd">
-        {[0, 120, 240].map((angle) => (
-          <path key={angle} fill="white" d={GHOST_SPIRAL} transform={`rotate(${angle})`} />
-        ))}
-      </g>
-    </svg>
+    <div className="w-full h-full flex items-center justify-center">
+      <img
+        src={TRISKELION_URL}
+        alt=""
+        className="w-full h-full object-contain"
+        style={{ filter: 'brightness(0) invert(1)' }}
+      />
+    </div>
   );
 }
 
