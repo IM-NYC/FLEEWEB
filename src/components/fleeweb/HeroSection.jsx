@@ -1,23 +1,30 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-// Inline authentic triskelion SVG for the background ghost
+// Inline accurate triskelion SVG for the background ghost
+const SPIRAL_PATH = `M0,0
+  C-2,-5 -6,-8 -10,-8
+  C-20,-8 -28,2 -26,14
+  C-24,26 -12,34 0,34
+  C14,34 26,22 28,8
+  C30,-8 18,-22 4,-28
+  C-14,-36 -36,-28 -46,-12
+  C-58,6 -52,32 -36,44
+  C-20,58 4,58 20,48
+  C38,36 44,12 38,-8
+  C30,-32 8,-50 -16,-54
+  C-44,-60 -70,-44 -80,-18
+  C-90,10 -78,42 -54,56`;
+
 function GhostTriskele() {
   return (
     <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <g transform="translate(100,100)">
+      <g transform="translate(100,105)">
         {[0, 120, 240].map((angle) => (
           <g key={angle} transform={`rotate(${angle})`}>
-            <path
-              d="M0,0 C0,-8 4,-14 10,-18 C18,-24 28,-24 34,-16 C40,-8 36,4 28,10 C18,18 4,16 -4,8 C-14,-4 -10,-20 2,-28 C16,-38 34,-34 42,-20 C52,-4 44,16 30,22"
-              stroke="white"
-              strokeWidth="7"
-              strokeLinecap="round"
-              fill="none"
-            />
+            <path d={SPIRAL_PATH} stroke="white" strokeWidth="16" strokeLinecap="round" fill="none" />
           </g>
         ))}
-        <circle cx="0" cy="0" r="5" fill="white" />
       </g>
     </svg>
   );
