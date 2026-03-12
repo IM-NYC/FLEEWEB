@@ -15,44 +15,48 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="py-28 relative" style={{ background: '#F4F4F4' }}>
-      <div className="absolute inset-0 opacity-[0.04]"
+    <section id="services" className="py-28 relative" style={{ background: '#0A0E14' }}>
+      <div className="absolute inset-0 opacity-[0.025]"
         style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, #0D1B2A 1px, transparent 0)',
+          backgroundImage: 'radial-gradient(circle at 1px 1px, #C0C0C0 1px, transparent 0)',
           backgroundSize: '36px 36px'
         }}
       />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: '#1E6FD9' }}>What We Do</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-3" style={{ color: '#0D1B2A' }}>Services Built for Growth</h2>
-          <p className="mt-3 max-w-lg mx-auto text-sm" style={{ color: '#555' }}>
-            End-to-end web solutions designed to scale with your business.
-          </p>
-        </div>
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: '#555' }}>What We Do</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-3" style={{ color: '#E8E8E8' }}>Services Built for Growth</h2>
+          <div className="mt-4 w-12 h-px mx-auto" style={{ background: 'rgba(192,192,192,0.3)' }} />
+        </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: i * 0.07 }}
-              className="group p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1"
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.7, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              className="group p-6 rounded-2xl transition-all duration-500 hover:-translate-y-2"
               style={{
-                background: '#fff',
-                border: '1.5px solid rgba(30,111,217,0.15)',
-                boxShadow: '0 2px 12px rgba(13,27,42,0.06)'
+                background: '#0E1218',
+                border: '1px solid rgba(192,192,192,0.07)',
+                boxShadow: '0 2px 20px rgba(0,0,0,0.3)'
               }}
             >
-              <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300"
-                style={{ background: 'rgba(30,111,217,0.08)' }}>
-                <service.icon className="w-5 h-5" style={{ color: '#1E6FD9' }} />
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300"
+                style={{ background: 'rgba(192,192,192,0.06)', border: '1px solid rgba(192,192,192,0.1)' }}>
+                <service.icon className="w-5 h-5" style={{ color: '#C0C0C0' }} />
               </div>
-              <h3 className="font-bold text-base mb-2" style={{ color: '#0D1B2A' }}>{service.title}</h3>
-              <p className="text-sm leading-relaxed" style={{ color: '#555' }}>{service.desc}</p>
+              <h3 className="font-bold text-base mb-2" style={{ color: '#E8E8E8' }}>{service.title}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: '#666' }}>{service.desc}</p>
             </motion.div>
           ))}
         </div>

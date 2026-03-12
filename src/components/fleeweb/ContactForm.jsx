@@ -70,21 +70,25 @@ export default function ContactForm() {
     }
   }, [recaptchaLoaded]);
 
-  const inputStyle = { background: '#1A2B3C', borderColor: 'rgba(30,111,217,0.35)', color: '#F4F4F4' };
+  const inputStyle = {
+    background: '#080C10',
+    borderColor: 'rgba(192,192,192,0.15)',
+    color: '#E8E8E8'
+  };
 
   if (sent) {
     return (
       <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-16">
-        <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5"
-          style={{ background: 'rgba(30,111,217,0.15)' }}>
-          <CheckCircle className="w-8 h-8" style={{ color: '#1E6FD9' }} />
+        <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
+          style={{ background: 'rgba(192,192,192,0.07)', border: '1px solid rgba(192,192,192,0.2)' }}>
+          <CheckCircle className="w-7 h-7" style={{ color: '#C0C0C0' }} />
         </div>
-        <h3 className="text-2xl font-bold mb-2" style={{ color: '#F4F4F4' }}>Message Sent!</h3>
-        <p style={{ color: '#C0C0C0' }}>We'll get back to you within 24 hours.</p>
+        <h3 className="text-2xl font-bold mb-2" style={{ color: '#E8E8E8' }}>Message Sent!</h3>
+        <p style={{ color: '#666' }}>We'll get back to you within 24 hours.</p>
         <button
           onClick={() => setSent(false)}
-          className="mt-6 px-6 py-2.5 rounded-xl text-sm font-medium border transition-all duration-200 hover:shadow-md"
-          style={{ border: '1.5px solid rgba(30,111,217,0.4)', color: '#1E6FD9', background: 'transparent' }}
+          className="mt-6 px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 hover:opacity-80"
+          style={{ border: '1px solid rgba(192,192,192,0.2)', color: '#C0C0C0', background: 'transparent' }}
         >
           Send Another Message
         </button>
@@ -95,26 +99,26 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <Label htmlFor="name" className="text-sm mb-2 block font-medium" style={{ color: '#C0C0C0' }}>Full Name</Label>
+        <Label htmlFor="name" className="text-xs mb-2 block font-medium tracking-wider uppercase" style={{ color: '#555' }}>Full Name</Label>
         <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })}
-          placeholder="John Doe" className="h-12 rounded-xl text-sm border transition-all duration-200" style={inputStyle} />
+          placeholder="John Doe" className="h-12 rounded-xl text-sm border" style={inputStyle} />
       </div>
       <div>
-        <Label htmlFor="email" className="text-sm mb-2 block font-medium" style={{ color: '#C0C0C0' }}>Email Address</Label>
+        <Label htmlFor="email" className="text-xs mb-2 block font-medium tracking-wider uppercase" style={{ color: '#555' }}>Email Address</Label>
         <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}
-          placeholder="john@company.com" className="h-12 rounded-xl text-sm border transition-all duration-200" style={inputStyle} />
+          placeholder="john@company.com" className="h-12 rounded-xl text-sm border" style={inputStyle} />
       </div>
       <div>
-        <Label htmlFor="message" className="text-sm mb-2 block font-medium" style={{ color: '#C0C0C0' }}>Your Message</Label>
+        <Label htmlFor="message" className="text-xs mb-2 block font-medium tracking-wider uppercase" style={{ color: '#555' }}>Your Message</Label>
         <Textarea id="message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
           placeholder="Tell us about your project..." rows={5}
-          className="rounded-xl text-sm resize-none border transition-all duration-200" style={inputStyle} />
+          className="rounded-xl text-sm resize-none border" style={inputStyle} />
       </div>
 
       <div>
         <div id="recaptcha-container" className="mt-1" />
         {!recaptchaLoaded && (
-          <div className="flex items-center gap-2 text-sm" style={{ color: '#C0C0C0' }}>
+          <div className="flex items-center gap-2 text-sm" style={{ color: '#555' }}>
             <Loader2 className="w-4 h-4 animate-spin" /> Loading verification...
           </div>
         )}
@@ -123,13 +127,13 @@ export default function ContactForm() {
       <AnimatePresence>
         {error && (
           <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-            className="text-red-400 text-sm font-medium">{error}</motion.p>
+            className="text-red-400 text-sm">{error}</motion.p>
         )}
       </AnimatePresence>
 
       <button type="submit" disabled={sending}
-        className="w-full h-12 rounded-xl text-sm font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl flex items-center justify-center gap-2"
-        style={{ background: '#1E6FD9', color: '#F4F4F4' }}>
+        className="w-full h-12 rounded-xl text-sm font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl flex items-center justify-center gap-2"
+        style={{ background: '#C0C0C0', color: '#080C10' }}>
         {sending ? <Loader2 className="w-5 h-5 animate-spin" /> : <><Send className="w-4 h-4" /> Send Message</>}
       </button>
     </form>
