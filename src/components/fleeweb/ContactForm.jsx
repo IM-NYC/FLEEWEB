@@ -45,12 +45,7 @@ export default function ContactForm() {
       return;
     }
     setSending(true);
-    await emailjs.send(
-      'SERVICE_ID',       // replace with your EmailJS service ID
-      'TEMPLATE_ID',      // replace with your EmailJS template ID
-      { name: form.name, email: form.email, message: form.message },
-      'PUBLIC_KEY'        // replace with your EmailJS public key
-    );
+    await base44.functions.invoke('sendContactEmail', { name: form.name, email: form.email, message: form.message });
     setSending(false);
     setSent(true);
     setForm({ name: '', email: '', message: '' });
