@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { base44 } from '@/api/base44Client';
+import emailjs from '@emailjs/browser';
 import { Send, Loader2, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
