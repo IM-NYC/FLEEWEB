@@ -53,7 +53,7 @@ export default function Footer() {
               {[
                 { href: 'tel:+17187108933', icon: Phone, text: '+1 (718) 710-8933' },
                 { href: 'tel:+19297672727', icon: Phone, text: '+1 (929) 767-2727' },
-                { href: 'mailto:info@fleeweb.com', icon: Mail, text: 'info@fleeweb.com' },
+                { href: 'mailto:sales@fleeweb.com', icon: Mail, text: 'sales@fleeweb.com' },
               ].map((item, i) => (
                 <a key={i} href={item.href} className="flex items-center gap-2 text-sm transition-colors duration-200"
                   style={{ color: '#444' }}

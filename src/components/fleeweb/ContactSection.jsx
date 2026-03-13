@@ -1,13 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import ContactForm from '@/components/fleeweb/ContactForm';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import Triskele from '@/components/fleeweb/Triskele';
 
 const contactInfo = [
   { icon: Phone, label: 'Phone', value: '+1 (718) 710-8933', href: 'tel:+17187108933' },
   { icon: Phone, label: 'Phone', value: '+1 (929) 767-2727', href: 'tel:+19297672727' },
-  { icon: Mail, label: 'Email', value: 'info@fleeweb.com', href: 'mailto:info@fleeweb.com' },
+  { icon: Mail, label: 'Email', value: 'sales@fleeweb.com', href: 'mailto:sales@fleeweb.com' },
   { icon: MapPin, label: 'Location', value: 'New York, USA', href: null },
   { icon: Clock, label: 'Hours', value: 'Sat – Sun, 10AM – 7PM EST', href: null },
 ];
