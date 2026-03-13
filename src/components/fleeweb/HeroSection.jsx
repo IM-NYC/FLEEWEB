@@ -62,7 +62,7 @@ export default function HeroSection() {
         style={{ y: bgY }}
       >
         <motion.div
-          style={{ scale: triScale, opacity: triOpacity }}
+          style={{ scale: triScale, opacity: triOpacity, originX: '50%', originY: '50%' }}
           className="w-[700px] h-[700px] md:w-[900px] md:h-[900px]"
           animate={{ rotate: 360 }}
           transition={{ duration: 120, repeat: Infinity, ease: 'linear' }}
