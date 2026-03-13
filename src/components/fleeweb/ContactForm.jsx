@@ -45,11 +45,12 @@ export default function ContactForm() {
       return;
     }
     setSending(true);
-    await base44.integrations.Core.SendEmail({
-      to: 'info@fleeweb.com',
-      subject: `New Contact from ${form.name}`,
-      body: `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`
-    });
+    await emailjs.send(
+      'SERVICE_ID',       // replace with your EmailJS service ID
+      'TEMPLATE_ID',      // replace with your EmailJS template ID
+      { name: form.name, email: form.email, message: form.message },
+      'PUBLIC_KEY'        // replace with your EmailJS public key
+    );
     setSending(false);
     setSent(true);
     setForm({ name: '', email: '', message: '' });
