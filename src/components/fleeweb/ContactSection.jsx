@@ -76,7 +76,7 @@ export default function ContactSection() {
           </motion.div>
 
           <motion.div
-            className="lg:col-span-3 p-8 rounded-2xl"
+            className="lg:col-span-3 p-8 rounded-2xl flex flex-col items-center justify-center text-center"
             style={{
               background: '#0E1218',
               border: '1px solid rgba(192,192,192,0.08)',
@@ -87,8 +87,19 @@ export default function ContactSection() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h3 className="font-bold text-lg mb-6" style={{ color: '#E8E8E8' }}>Send Us a Message</h3>
-            <ContactForm />
+            <Mail className="w-10 h-10 mb-5" style={{ color: '#C0C0C0' }} />
+            <h3 className="font-bold text-xl mb-3" style={{ color: '#E8E8E8' }}>Drop Us an Email</h3>
+            <p className="text-sm mb-8 max-w-xs" style={{ color: '#666' }}>
+              Ready to start your project? Email us directly and we'll get back to you within 24 hours.
+            </p>
+            <a
+              href="mailto:sales@fleeweb.com"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-sm font-bold transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+              style={{ background: '#C0C0C0', color: '#080C10' }}
+            >
+              <Mail className="w-4 h-4" />
+              sales@fleeweb.com
+            </a>
           </motion.div>
         </div>
       </div>
