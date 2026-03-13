@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import ContactForm from '@/components/fleeweb/ContactForm';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import Triskele from '@/components/fleeweb/Triskele';
 
