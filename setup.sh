@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Usage: sudo ./setup_web_server.sh <GIT_REPO_URL> <DOMAIN_NAME>
-# Example: sudo ./setup_web_server.sh https://github.com/you/site.git example.com
+# Usage: sudo ./setup.sh <GIT_REPO_URL> <DOMAIN_NAME>
+# Example: sudo ./setup.sh https://github.com/you/site.git example.com
 
 if [[ "$EUID" -ne 0 ]]; then
   echo "Please run as root (use sudo)." >&2
@@ -19,13 +19,16 @@ DOMAIN="$2"
 SITENAME="${DOMAIN}"
 WEBROOT="/var/www/${SITENAME}"
 
-# Detect package manager
+# Detect package manager (supports Debian/Ubuntu, Amazon Linux, RHEL/CentOS, Fedora)
+PM=""
 if command -v apt-get >/dev/null 2>&1; then
   PM="apt"
+elif command -v dnf >/dev/null 2>&1; then
+  PM="dnf"
 elif command -v yum >/dev/null 2>&1; then
   PM="yum"
 else
-  echo "Supported package manager not found (apt or yum)." >&2
+  echo "Supported package manager not found (apt, dnf, or yum)." >&2
   exit 1
 fi
 
@@ -35,6 +38,9 @@ update_packages() {
   case "$PM" in
     apt)
       apt-get update -y
+      ;;
+    dnf)
+      dnf makecache -y
       ;;
     yum)
       yum makecache -y
@@ -49,6 +55,9 @@ install_pkg() {
     case "$PM" in
       apt)
         apt-get install -y "$pkg"
+        ;;
+      dnf)
+        dnf install -y "$pkg"
         ;;
       yum)
         yum install -y "$pkg"
@@ -117,6 +126,10 @@ else
 fi
 
 echo "Creating Nginx config for ${DOMAIN}..."
+
+# Ensure Nginx config and log directories exist (handles Amazon Linux and others)
+mkdir -p "$(dirname "${NGINX_AVAILABLE}")"
+mkdir -p /var/log/nginx
 
 cat > "${NGINX_AVAILABLE}" <<EOF
 server {
