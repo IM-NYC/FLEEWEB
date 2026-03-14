@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { base44 } from '@/api/base44Client';
 import { Send, Loader2, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -44,12 +43,33 @@ export default function ContactForm() {
       setError('Please complete the reCAPTCHA verification.');
       return;
     }
-    setSending(true);
-    await base44.functions.invoke('sendContactEmail', { name: form.name, email: form.email, message: form.message });
-    setSending(false);
-    setSent(true);
-    setForm({ name: '', email: '', message: '' });
-    if (window.grecaptcha) window.grecaptcha.reset(recaptchaRef.current);
+    try {
+      setSending(true);
+      const res = await fetch('/functions/sendContactEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Failed to send message.');
+      }
+
+      setSent(true);
+      setForm({ name: '', email: '', message: '' });
+      if (window.grecaptcha) window.grecaptcha.reset(recaptchaRef.current);
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setSending(false);
+    }
   };
 
   useEffect(() => {
