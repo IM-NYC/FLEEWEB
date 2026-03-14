@@ -68,7 +68,7 @@ function App() {
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
-        <Router>
+        <Router basename="/FleeWeb">
           <AuthenticatedApp />
         </Router>
         <Toaster />
