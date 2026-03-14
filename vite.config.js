@@ -3,9 +3,9 @@ import { defineConfig } from 'vite'
 import path from 'path'
 
 // https://vite.dev/config/
-// base required for GitHub Pages: https://im-nyc.github.io/FleeWeb/
+// base: '/' for custom domain (www.fleeweb.com via CNAME); use '/FleeWeb/' for *.github.io/FleeWeb/
 export default defineConfig({
-  base: '/FleeWeb/',
+  base: '/',
   logLevel: 'error', // Suppress warnings, only show errors
   plugins: [
     react(),
