@@ -1,16 +1,18 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-const TRISKELION_URL = 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69ae38c191a1a1d5925fd401/41f84d60e_99389_triskelion.png';
+import triskelionLight from '@/assets/triskelion-light.png';
 
 function GhostTriskele() {
   return (
     <div className="w-full h-full flex items-center justify-center">
-      <img
-        src={TRISKELION_URL}
+      <motion.img
+        src={triskelionLight}
         alt=""
         className="w-full h-full object-contain"
-        style={{ filter: 'brightness(0) invert(1)' }}
+        style={{ transformOrigin: 'center center' }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 120, repeat: Infinity, ease: 'linear' }}
       />
     </div>
   );
@@ -38,7 +40,7 @@ export default function HeroSection() {
   // Parallax & scroll-driven effects
   const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
   const triScale = useTransform(scrollYProgress, [0, 1], [1, 1.25]);
-  const triOpacity = useTransform(scrollYProgress, [0, 0.6], [0.07, 0]);
+  const triOpacity = useTransform(scrollYProgress, [0, 0.6], [0.18, 0]);
   const textY = useTransform(scrollYProgress, [0, 1], ['0%', '-15%']);
   const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
@@ -56,16 +58,14 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Ghost triskelion lurking behind — parallax scaled */}
+      {/* Ghost triskelion lurking behind — parallax scaled, rotates around image center */}
       <motion.div
         className="absolute inset-0 flex items-center justify-center pointer-events-none"
         style={{ y: bgY }}
       >
         <motion.div
-          style={{ scale: triScale, opacity: triOpacity, originX: '50%', originY: '50%' }}
-          className="w-[700px] h-[700px] md:w-[900px] md:h-[900px]"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 120, repeat: Infinity, ease: 'linear' }}
+          style={{ scale: triScale, opacity: triOpacity }}
+          className="w-[700px] h-[700px] md:w-[900px] md:h-[900px] flex items-center justify-center"
         >
           <GhostTriskele />
         </motion.div>
